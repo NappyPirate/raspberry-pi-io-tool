@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="css/layout-default.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    
+    <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui.js"></script>
+    <script type="text/javascript" src="js/jquery.layout-1.3.0.rc30.79.js"></script>
+</head>
+
+<body>
+    <div id="container">
+        <div id="graphics-pane" class="pane ui-layout-center">
+            <canvas id="diagram">
+            </canvas>
+        </div>
+        
+        <div id="property-explorer" class="pane ui-layout-east">
+            <div id="pins" class="pane ui-layout-center">
+                <table id="pins-table">
+                </table>
+            </div>
+            
+            <div id="properties" class="pane ui-layout-south">
+                <table id="properties-table">
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div id="status-bar">
+    </div>
+    
+    <script type="text/javascript" src="main.js"></script>
+</body>
+</html>

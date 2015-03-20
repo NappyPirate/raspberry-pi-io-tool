@@ -1,0 +1,14 @@
+{
+  "name": "raspberry-pi-io-nw",
+  "description": "A tool for the raspberry pi api",
+  "version": "0.1.0",
+  "main": "index.html",
+  "window": {
+    "toolbar": true,
+    "frame": true,
+    "width": 960,
+    "height": 540,
+    "min_width": 480,
+    "min_height": 270
+  }
+}

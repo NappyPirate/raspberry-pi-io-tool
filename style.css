@@ -1,0 +1,44 @@
+.pane {
+  display: none;
+}
+html {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+}
+body {
+  margin-left: auto;
+  margin-right: auto;
+  margin: 0;
+  height: 100%;
+  background: Black;
+  overflow: auto;
+}
+#container {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+#status-bar {
+  height: 25px;
+  border-top: solid 1px black;
+  background: LightGray;
+}
+#graphics-pane {
+  float: left;
+  width: 75%;
+  padding: 0;
+  margin: 0;
+}
+#property-explorer {
+  float: right;
+  width: 25%;
+  height: 100%;
+  padding: 0;
+}
+#diagram {
+  width: 100%;
+}
