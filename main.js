@@ -1,12 +1,16 @@
-function toggleLiveResizing (lout) {
-    $.each( $.layout.config.borderPanes, function (i, pane) {
-        var o = lout.options[ pane ];
-        o.livePaneResizing = !o.livePaneResizing;
-    });
-};
-
 var mainLayout;
 var innerLayout;
+
+var resizeCanvas = function(){
+    canvas = document.getElementById('diagram');
+    canvas.width = $('#graphics-pane').innerWidth() - 20
+    canvas.height = $('#graphics-pane').innerHeight() - 20
+};
+
+var resizeContainer = function(){
+    var height = $(window).innerHeight() - 25;
+    $('#container').height(height);
+}
 
 $(document).ready(function () {
     mainLayout = $('#container').layout({
@@ -18,7 +22,8 @@ $(document).ready(function () {
     ,    east__minSize:               200
     ,    east__maxSize:               .5 
     ,    center__minWidth:            100
-    ,    showDebugMessages:           true 
+    ,    showDebugMessages:           true
+    ,    center__onresize_end:        resizeCanvas
     });
     
     innerLayout = $('#property-explorer').layout({
@@ -29,14 +34,20 @@ $(document).ready(function () {
     ,    south__size:                 .5
     ,    showDebugMessages:           true 
     });
+    
+    resizeCanvas();
 });
 
-var resizeContainer = function(){
-    var bodyHeight = document.body.offsetHeight - 27;
-    $('#container').height(bodyHeight);
-    $('#graphics-pane').height(bodyHeight);
-    $('#diagram').height(bodyHeight - 6);
-}
-
 window.onresize = resizeContainer;
+
 resizeContainer();
+
+$(window).load(function(){
+    var dWidget = new DiagramWidget('diagram', 'imgs/RaspberryPiPinoutsBlankHorizontal.png', '1-B');
+    dWidget.drawImage();
+});
+
+
+
+
+
