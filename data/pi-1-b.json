@@ -1,0 +1,218 @@
+{
+    "name" : "raspberry-pi-1-B",
+    "description" : "A raspberry pi 1 model B",
+    "image" : "imgs/RaspberryPiPinoutsBlankHorizontal.png",
+    "imageWidth" : 606,
+    "imageHeight" : 219,
+    "numberOfPins" : 26,
+    "pins" : [
+        {
+            "pin" : 1,
+            "x" : 41.74,
+            "y" : 127.76,
+            "r" : 10,
+            "default" : "3.3 volts",
+            "reserved" : true
+        },
+        {
+            "pin" : 2,
+            "x" : 41.74,
+            "y" : 92.14,
+            "r" : 10,
+            "default" : "5 volts",
+            "reserved" : true
+        },
+        {
+            "pin" : 3,
+            "x" : 76.50,
+            "y" : 127.76,
+            "r" : 10,
+            "default" : "SDA",
+            "reserved" : false
+        },
+        {
+            "pin" : 4,
+            "x" : 76.50,
+            "y" : 92.24,
+            "r" : 10,
+            "default" : "5 volts",
+            "reserved" : true
+        },
+        {
+            "pin" : 5,
+            "x" : 111.26,
+            "y" : 127.76,
+            "r" : 10,
+            "default" : "SCL",
+            "reserved" : false
+        },
+        {
+            "pin" : 6,
+            "x" : 111.26,
+            "y" : 92.14,
+            "r" : 10,
+            "default" : "ground",
+            "reserved" : true
+        },
+        {
+            "pin" : 7,
+            "x" : 146.02,
+            "y" : 127.76,
+            "r" : 10,
+            "default" : "none",
+            "reserved" : false
+        },
+        {
+            "pin" : 8,
+            "x" : 146.02,
+            "y" : 92.14,
+            "r" : 10,
+            "default" : "TxD",
+            "reserved" : false
+        },
+        {
+            "pin" : 9,
+            "x" : 181.00,
+            "y" : 127.76,
+            "r" : 10,
+            "default" : "ground",
+            "reserved" : true
+        },
+        {
+            "pin" : 10,
+            "x" : 181.00,
+            "y" : 92.14,
+            "r" : 10,
+            "default" : "RxD",
+            "reserved" : false
+        },
+        {
+            "pin" : 11,
+            "x" : 215.86,
+            "y" : 127.76,
+            "r" : 10,
+            "default" : "none",
+            "reserved" : false
+        },
+        {
+            "pin" : 12,
+            "x" : 215.86,
+            "y" : 92.14,
+            "r" : 10,
+            "default" : "none",
+            "reserved" : false
+        },
+        {
+            "pin" : 13,
+            "x" : 250.86,
+            "y" : 127.76,
+            "r" : 10,
+            "default" : "none",
+            "reserved" : false
+        },
+        {
+            "pin" : 14,
+            "x" : 250.91,
+            "y" : 92.14,
+            "r" : 10,
+            "default" : "ground",
+            "reserved" : true
+        },
+        {
+            "pin" : 15,
+            "x" : 285.64,
+            "y" : 127.76,
+            "r" : 10,
+            "default" : "none",
+            "reserved" : false
+        },
+        {
+            "pin" : 16,
+            "x" : 285.69,
+            "y" : 92.14,
+            "r" : 10,
+            "default" : "none",
+            "reserved" : false
+        },
+        {
+            "pin" : 17,
+            "x" : 320.90,
+            "y" : 127.50,
+            "r" : 10,
+            "default" : "3.3 volts",
+            "reserved" : true
+        },
+        {
+            "pin" : 18,
+            "x" : 320.76,
+            "y" : 91.52,
+            "r" : 10,
+            "default" : "none",
+            "reserved" : false
+        },
+        {
+            "pin" : 19,
+            "x" : 355.65,
+            "y" : 127.50,
+            "r" : 10,
+            "default" : "MOSI",
+            "reserved" : false
+        },
+        {
+            "pin" : 20,
+            "x" : 355.65,
+            "y" : 91.52,
+            "r" : 10,
+            "default" : "ground",
+            "reserved" : true
+        },
+        {
+            "pin" : 21,
+            "x" : 390.58,
+            "y" : 127.50,
+            "r" : 10,
+            "default" : "MISO",
+            "reserved" : false
+        },
+        {
+            "pin" : 22,
+            "x" : 390.58,
+            "y" : 91.52,
+            "r" : 10,
+            "default" : "none",
+            "reserved" : false
+        },
+        {
+            "pin" : 23,
+            "x" : 425.55,
+            "y" : 127.50,
+            "r" : 10,
+            "default" : "SCLK",
+            "reserved" : false
+        },
+        {
+            "pin" : 24,
+            "x" : 425.55,
+            "y" : 91.52,
+            "r" : 10,
+            "default" : "CE0",
+            "reserved" : false
+        },
+        {
+            "pin" : 25,
+            "x" : 460.46,
+            "y" : 127.50,
+            "r" : 10,
+            "default" : "ground",
+            "reserved" : true
+        },
+        {
+            "pin" : 26,
+            "x" : 460.46,
+            "y" : 91.52,
+            "r" : 10,
+            "default" : "CE1",
+            "reserved" : false
+        }
+    ]
+}

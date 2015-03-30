@@ -1,10 +1,12 @@
 var mainLayout;
 var innerLayout;
+var dWidget;
 
 var resizeCanvas = function(){
     canvas = document.getElementById('diagram');
-    canvas.width = $('#graphics-pane').innerWidth() - 20
-    canvas.height = $('#graphics-pane').innerHeight() - 20
+    canvas.width = $('#graphics-pane').innerWidth() - 20;
+    canvas.height = $('#graphics-pane').innerHeight() - 20;
+    $('#diagram').drawLayers();
 };
 
 var resizeContainer = function(){
@@ -42,12 +44,21 @@ window.onresize = resizeContainer;
 
 resizeContainer();
 
-$(window).load(function(){
-    var dWidget = new DiagramWidget('diagram', 'imgs/RaspberryPiPinoutsBlankHorizontal.png', '1-B');
+function loadBoard(boardType) {
+    delete dWidget;
+    var jsonObj = require('./data/' + boardType + '.json');
+    
+    pWidget = new ExplorerWidget('pins-table', 'properties-table');
+    pWidget.setBoard(jsonObj);
+    
+    dWidget = new DiagramWidget('diagram', jsonObj);
     dWidget.drawImage();
+};
+
+function sayHello(layer) {
+    alert(layer.name);
+};
+
+$(window).load(function(){
+    loadBoard('pi-1-b');
 });
-
-
-
-
-
