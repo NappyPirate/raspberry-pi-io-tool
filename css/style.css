@@ -1,0 +1,83 @@
+html {
+  margin: 0;
+  padding: 0;
+}
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#menubar {
+  margin: none;
+  padding: none;
+  width: 100%;
+  height: 33px;
+  background: #001021;
+  -webkit-app-region: drag;
+}
+
+span.menubar-item {
+  float: left;
+  color: white;
+  font-size: 21px;
+  padding: 5px;
+}
+
+span.menubar-item:hover {
+  color: #333;
+  background: gray;
+}
+
+#login {
+  float: right;
+  font-size: 13px;
+  padding: 8px 20px 7px 20px;
+}
+
+#menu {
+  float: left;
+}
+
+#container {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+#property-explorer {
+  float: left;
+  height: 100%;
+  width: auto;
+  background: #333;
+  background: #F4F4F4;
+  margin: auto;
+}
+
+#graphics-pane {
+  float: right;
+  width: auto;
+  height: 100%;
+  background: #ECF0F1;
+  background: #B4B4B4;
+}
+
+label.label-hover {
+  margin: 0;
+  font-weight: normal;
+}
+
+label.label-hover:hover {
+  background: #333;
+  color: white;
+  border-radius: 2px;
+  padding: 2px 4px;
+}
+
+.clickedit {
+  width: 100px;
+  color: black;
+}
+

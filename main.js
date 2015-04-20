@@ -1,64 +1,52 @@
+var gui = require('nw.gui');
+var win = gui.Window.get();
+var rest = require('restler');
+
 var mainLayout;
 var innerLayout;
 var dWidget;
 
-var resizeCanvas = function(){
-    canvas = document.getElementById('diagram');
-    canvas.width = $('#graphics-pane').innerWidth() - 20;
-    canvas.height = $('#graphics-pane').innerHeight() - 20;
+var resizeElements = function(){
+    $('html').height($(window).innerHeight());
+    $('#container').height($('body').innerHeight() - $('#menubar').height());
+    
+    var canvas = document.getElementById('diagram');
+    canvas.height = $('#container').innerHeight();
+    
+    var explorerWidth = $('#property-explorer').css('width');
+    canvas.width = ($('#container').innerWidth() - explorerWidth.substring(0, explorerWidth.length - 2));
+    
     $('#diagram').drawLayers();
 };
 
-var resizeContainer = function(){
-    var height = $(window).innerHeight() - 25;
-    $('#container').height(height);
-}
-
-$(document).ready(function () {
-    mainLayout = $('#container').layout({
-        closable:                     false    
-    ,    resizable:                   true   
-    ,    slidable:                    true   
-    ,    livePaneResizing:            true
-    ,    east__size:                  300
-    ,    east__minSize:               200
-    ,    east__maxSize:               .5 
-    ,    center__minWidth:            100
-    ,    showDebugMessages:           true
-    ,    center__onresize_end:        resizeCanvas
-    });
-    
-    innerLayout = $('#property-explorer').layout({
-        closable:                     false    
-    ,    resizable:                   true   
-    ,    slidable:                    true   
-    ,    livePaneResizing:            true
-    ,    south__size:                 .5
-    ,    showDebugMessages:           true 
-    });
-    
-    resizeCanvas();
-});
-
-window.onresize = resizeContainer;
-
-resizeContainer();
-
-function loadBoard(boardType) {
+function loadBoardType(boardType) {
     delete dWidget;
     var jsonObj = require('./data/' + boardType + '.json');
     
-    pWidget = new ExplorerWidget('pins-table', 'properties-table');
+    pWidget = new ExplorerWidget('properties-table');
     pWidget.setBoard(jsonObj);
     
-    dWidget = new DiagramWidget('diagram', jsonObj);
-    dWidget.drawImage();
+    dWidget = new DiagramWidget('diagram');
+    dWidget.setBoard(jsonObj);
+    dWidget.onPinClick(function(p){
+        pWidget.selectPin(p.name.substring(3))
+    });
 };
 
-function sayHello(layer) {
-    alert(layer.name);
-};
+function generateLoginForm() {
+
+}
+
+$('#login').click(function(){$('#login-prompt').modal('show')});
+
+window.onresize = resizeElements;
 
 $(window).load(function(){
-    loadBoard('pi-1-b');
+    loadBoardType('pi-1-b');
+    pWidget.selectPin(1);
+    dWidget.init();
+    
+    rest.get('https://public.opencpu.org/ocpu/library/').on('success', function(data) {
+        console.log(data);
+    });
 });

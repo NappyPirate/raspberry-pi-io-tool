@@ -1,12 +1,5 @@
-var DiagramWidget = function(canvasId, boardObj) {
+var DiagramWidget = function(canvasId) {
     this.canvas = $('#'+canvasId);
-    this.boardObject = boardObj;
-    this.pinColors = {
-        "none": {"dark": "#008000", "light": "#90EE90"},
-        "volts": {"dark": "#FF0000", "light": "#DB7093"},
-        "ground": {"dark": "#000000", "light": "#A9A9A9"},
-        "other": {"dark": "#FFFF00", "light": "#FFFFE0"}
-    };
     
     this.setCanvas = function(cId) {
         this.canvas = $('#'+cId);
@@ -17,15 +10,19 @@ var DiagramWidget = function(canvasId, boardObj) {
         this.boardObject = obj;
     }
     
-    this.drawImage = function() {
+    this.init = function() {
+        this.canvas.removeLayers();
+    
         var origin =  { 
-            "x": (this.canvas.width() / 2) - (this.boardObject.imageWidth / 2),
-            "y": (this.canvas.height() / 2) - (this.boardObject.imageHeight / 2)
+            'x': (this.canvas.width() / 2) - (this.boardObject.imageWidth / 2),
+            'y': (this.canvas.height() / 2) - (this.boardObject.imageHeight / 2)
         };
         
         this.canvas.addLayer({
             name: 'picture',
             type: 'image',
+            shadowColor: '#000',
+            shadowBlur: 5,
             layer: true,
             draggable: true,
             source: this.boardObject.image,
@@ -33,7 +30,7 @@ var DiagramWidget = function(canvasId, boardObj) {
             x: origin.x,
             y: origin.y,
             data: {
-                lastPosition: {"x": origin.x, "y": origin.y}
+                lastPosition: {'x': origin.x, 'y': origin.y}
             },
             dragstart: function() {
                 $(this).setLayerGroup('pins', { 
@@ -42,7 +39,7 @@ var DiagramWidget = function(canvasId, boardObj) {
                 $(this).drawLayers();
             },
             dragstop: function(layer) {
-                var delta = {"x": layer.x - layer.data.lastPosition.x, "y": layer.y - layer.data.lastPosition.y};
+                var delta = {'x': layer.x - layer.data.lastPosition.x, 'y': layer.y - layer.data.lastPosition.y};
                 
                 $(this).setLayerGroup('pins', {
                     visible: true,
@@ -52,7 +49,7 @@ var DiagramWidget = function(canvasId, boardObj) {
                 
                 $(this).setLayer('picture', {
                     data: {
-                        lastPosition: {"x": layer.x, "y": layer.y}
+                        lastPosition: {'x': layer.x, 'y': layer.y}
                     }
                 });
                
@@ -60,19 +57,12 @@ var DiagramWidget = function(canvasId, boardObj) {
             }
         })
         
-        this.addPins(origin);
-        this.canvas.drawLayers();
-    }
-    
-    this.addPins = function(pos){
-        var origin = pos;
-    
         this.boardObject.pins.forEach(function(element, index, array) {
-            var color = this.pinColors.other;
+            var color = this.boardObject.pinColors.other;
             
-            for (var key in this.pinColors) {
+            for (var key in this.boardObject.pinColors) {
                 if(element.default.indexOf(key) > -1) {
-                    color = this.pinColors[key];
+                    color = this.boardObject.pinColors[key];
                 } 
             }
             
@@ -97,11 +87,53 @@ var DiagramWidget = function(canvasId, boardObj) {
                 }
             });
         }, this);
+        
+        if(typeof this.onPinClickFunction == 'function'){
+            var func = this.onPinClickFunction;
+            this.canvas.setLayerGroup('pins', {
+                click: func
+            });
+        }
+        
+        this.canvas.drawLayers();
     }
     
-    this.setPinClick = function(func){
+    this.onPinClick = function(func){
+        this.onPinClickFunction = func;
+    
         this.canvas.setLayerGroup('pins', {
             click: func
         });
+    }
+    
+    this.centerImage = function(){
+        var current = {
+            'x' : this.canvas.getLayer('picture').x,
+            'y' : this.canvas.getLayer('picture').y
+        };
+        
+        var destination =  { 
+            'x': (this.canvas.width() / 2) - (this.boardObject.imageWidth / 2),
+            'y': (this.canvas.height() / 2) - (this.boardObject.imageHeight / 2)
+        };
+        
+        var delta = {
+            'x' : destination.x - current.x,
+            'y' : destination.y - current.y
+        };
+        
+        this.canvas.setLayers({
+            x: '+=' + delta.x,
+            y: '+=' + delta.y
+        });
+        
+        this.canvas.setLayer('picture',{
+            data: {
+                lastPosition: {'x': destination.x, 'y': destination.y}
+            }
+        });
+        
+        this.canvas.clearCanvas();
+        this.canvas.drawLayers();
     }
 };

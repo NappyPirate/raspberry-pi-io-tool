@@ -1,10 +1,16 @@
 {
     "name" : "raspberry-pi-1-B",
     "description" : "A raspberry pi 1 model B",
-    "image" : "imgs/RaspberryPiPinoutsBlankHorizontal.png",
+    "image" : "images/RaspberryPiPinoutsBlankHorizontal.png",
     "imageWidth" : 606,
     "imageHeight" : 219,
     "numberOfPins" : 26,
+    "pinColors" : {
+        "none": {"dark": "#008000", "light": "#90EE90"},
+        "volts": {"dark": "#FF0000", "light": "#DB7093"},
+        "ground": {"dark": "#000000", "light": "#A9A9A9"},
+        "other": {"dark": "#FFFF00", "light": "#FFFFE0"}
+    },
     "pins" : [
         {
             "pin" : 1,
